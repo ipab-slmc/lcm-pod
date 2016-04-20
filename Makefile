@@ -1,6 +1,6 @@
-DL_FILE := lcm-1.0.0.tar.gz
-DL_LINK := http://lcm.googlecode.com/files/
-UNZIP_DIR := lcm-1.0.0
+DL_FILE := v1.3.1.tar.gz
+DL_LINK := https://github.com/lcm-proj/lcm/archive/
+UNZIP_DIR := lcm-1.3.1
 
 all: $(UNZIP_DIR)/Makefile
 	$(MAKE) -C $(UNZIP_DIR) install
@@ -34,6 +34,7 @@ $(UNZIP_DIR)/Makefile:
 configure: $(UNZIP_DIR)/configure
 	# run configure
 	@cd $(UNZIP_DIR)  && \
+                ./bootstrap.sh && \
 		./configure --prefix=$(BUILD_PREFIX) \
 		INSTALL="`which install` -c -C" \
 		PKG_CONFIG_PATH=$(PKG_CONFIG_PATH):$(BUILD_PREFIX)/lib/pkgconfig \
